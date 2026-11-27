@@ -20,7 +20,7 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-            - name: Start FastAPI server
+      - name: Start FastAPI server
         run: |
           nohup python src/main.py > server.log 2>&1 &
           for i in $(seq 1 15); do
