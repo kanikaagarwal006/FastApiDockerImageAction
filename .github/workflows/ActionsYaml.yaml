@@ -20,6 +20,14 @@ jobs:
         run: |
           pip install -r requirements.txt
 
+            - name: Start FastAPI server
+        run: |
+          nohup python src/main.py > server.log 2>&1 &
+          for i in $(seq 1 15); do
+            curl -sf http://localhost:8000/health && break
+            sleep 1
+          done
+
       - name: Run automated tests
         run: |
           python automationTesting.py
